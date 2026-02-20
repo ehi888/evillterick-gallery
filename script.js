@@ -1,7 +1,7 @@
 // ============================================================
 // CONFIG — Edit this to add/remove artworks
 // ============================================================
-const CYCLE_SECONDS = 30; // how long each artwork stays on screen
+const CYCLE_SECONDS = 15; // how long each artwork stays on screen
 const SHUFFLE = true;     // randomize order on each full loop
 
 const artworks = [
