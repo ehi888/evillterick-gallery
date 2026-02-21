@@ -204,11 +204,37 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// click to advance
+// click to advance (desktop only — ignore if swiping)
+let touchHandled = false;
 document.addEventListener("click", () => {
+  if (touchHandled) { touchHandled = false; return; }
   clearTimeout(timer);
   showNext();
 });
+
+// touch swipe to navigate
+let touchStartX = 0;
+let touchStartY = 0;
+document.addEventListener("touchstart", (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener("touchend", (e) => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) < 40 || Math.abs(dy) > Math.abs(dx)) return; // too short or vertical
+  touchHandled = true;
+  clearTimeout(timer);
+  if (dx < 0) {
+    // swipe left → next
+    showNext();
+  } else {
+    // swipe right → previous
+    currentIndex = Math.max(-1, currentIndex - 2);
+    showNext();
+  }
+}, { passive: true });
 
 // initial shuffle and start
 if (SHUFFLE) shuffleArray(order);

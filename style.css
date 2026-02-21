@@ -18,6 +18,7 @@ body:hover {
 #gallery {
   position: fixed;
   inset: 0;
+  height: 100dvh;
 }
 
 .slide {
@@ -138,4 +139,38 @@ body:hover {
 
 #progress-bar.animating {
   transition: width linear;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  #caption {
+    bottom: 24px;
+    right: 20px;
+    left: 20px;
+    text-align: center;
+  }
+
+  #caption-title {
+    font-size: 17px;
+  }
+
+  #caption-artist {
+    font-size: 13px;
+  }
+
+  #caption-location {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 380px) {
+  #caption {
+    bottom: 16px;
+    right: 12px;
+    left: 12px;
+  }
+
+  #caption-title {
+    font-size: 15px;
+  }
 }
